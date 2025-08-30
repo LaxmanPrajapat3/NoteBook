@@ -1,5 +1,5 @@
-import Logo from '../../assets/logo.svg';
-import WaveBackground from '../../assets/wave-background.jpg'; // Import the new background image
+// import Logo from '../../assets/logo.svg';
+import WaveBackground from '../../assets/wave-background.png'; // Import the new background image
 
 const AuthLayout = ({ children, title, subtitle }) => {
     return (
@@ -8,7 +8,7 @@ const AuthLayout = ({ children, title, subtitle }) => {
             <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-center items-center p-4 md:p-8">
                 <div className="max-w-md w-full mx-auto">
                     <div className="flex justify-center mb-6">
-                        <img src={Logo} alt="NoteApp Logo" className="h-10 w-auto" /> {/* Adjusted logo size */}
+                        {/* <img src={Logo} alt="NoteApp Logo" className="h-10 w-auto" /> Adjusted logo size */}
                     </div>
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-900">{title}</h2>

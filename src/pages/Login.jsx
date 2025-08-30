@@ -22,14 +22,21 @@ const Login = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        setErrors(prev => ({ ...prev, [name]: '' })); // Clear error when typing
     };
 
     const handleGetOtp = async () => {
+        let currentErrors = {};
         if (!validateEmail(formData.email)) {
-            setErrors({ email: 'Please enter a valid email address.' });
+            currentErrors.email = 'Please enter a valid email address.';
+        }
+
+        if (Object.keys(currentErrors).length > 0) {
+            setErrors(currentErrors);
             return;
         }
-        setErrors({});
+
+        setErrors({}); // Clear all errors before API call
         setIsLoading(true);
         try {
             await requestOtp(formData.email);
@@ -37,6 +44,7 @@ const Login = () => {
             setIsOtpSent(true);
         } catch (error) {
             toast.error(error.message || 'Failed to send OTP.');
+            setErrors({ api: error.message || 'Failed to send OTP.' });
         } finally {
             setIsLoading(false);
         }
@@ -44,7 +52,7 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.otp) {
+        if (!formData.otp.trim()) {
             setErrors({ otp: 'OTP is required.' });
             return;
         }
@@ -55,7 +63,7 @@ const Login = () => {
             navigate('/');
         } catch (error) {
             toast.error(error.message || 'Login failed. Please check your credentials.');
-            setErrors({ api: error.message });
+            setErrors({ api: error.message || 'Login failed. Please check your credentials.' });
         } finally {
             setIsLoading(false);
         }
@@ -67,6 +75,7 @@ const Login = () => {
                 {!isOtpSent ? (
                     <>
                         <Input id="email" name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} error={errors.email} />
+                        {errors.api && <p className="text-red-500 text-xs mt-1">{errors.api}</p>}
                         <Button type="button" onClick={handleGetOtp} isLoading={isLoading}>
                             Get OTP
                         </Button>
@@ -75,8 +84,16 @@ const Login = () => {
                     <>
                         <div className="text-center text-sm text-gray-600">
                             <p>An OTP has been sent to <strong>{formData.email}</strong>.</p>
+                            <button 
+                                type="button" 
+                                onClick={() => setIsOtpSent(false)} 
+                                className="text-indigo-600 hover:text-indigo-500 font-medium text-xs mt-1"
+                            >
+                                Change Email
+                            </button>
                         </div>
                         <Input id="otp" name="otp" type="text" placeholder="Enter 6-digit OTP" value={formData.otp} onChange={handleInputChange} error={errors.otp} />
+                        {errors.api && <p className="text-red-500 text-xs mt-1">{errors.api}</p>}
                         <Button type="submit" isLoading={isLoading}>
                             Log In
                         </Button>
