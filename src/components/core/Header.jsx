@@ -1,5 +1,5 @@
 import { useAuth } from '../../hooks/useAuth';
-import Logo from '../../assets/logo.svg';
+// import Logo from '../../assets/logo.svg';
 import { FiLogOut } from 'react-icons/fi';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <img className="h-8 w-auto" src={Logo} alt="NoteApp" />
+            {/* <img className="h-8 w-auto" src={Logo} alt="NoteApp" /> */}
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">

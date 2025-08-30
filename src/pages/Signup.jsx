@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import AuthLayout from '../components/auth/AuthLayout';
 import Input from '../components/auth/Input';
 import Button from '../components/core/Button';
-import GoogleIcon from '../assets/google-icon.svg';
+// import GoogleIcon from '../assets/google-icon.svg';
 
 const Signup = () => {
     const [formData, setFormData] = useState({ name: '', email: '', otp: '' });
@@ -98,7 +98,7 @@ const Signup = () => {
             </div>
 
             <Button variant="secondary" onClick={googleSignIn}>
-                <img src={GoogleIcon} alt="Google" className="w-5 h-5 mr-2" />
+                {/* <img src={GoogleIcon} alt="Google" className="w-5 h-5 mr-2" /> */}
                 Sign Up with Google
             </Button>
 
