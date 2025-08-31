@@ -27,6 +27,7 @@ const AuthLayout = ({ children, title, subtitle }) => {
             >
                 {/* Content can be added here if needed, like a tagline or logo */}
             </div>
+            
         </div>
     );
 };

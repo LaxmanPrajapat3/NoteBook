@@ -78,8 +78,6 @@ const Signup = () => {
                 {!isOtpSent ? (
                     <>
                         <Input id="name" name="name" type="text" placeholder="Your Name" value={formData.name} onChange={handleInputChange} error={errors.name} />
-<Input id="DOB" name="DOB" type="date" placeholder="Date of Birth" value={formData.DOB} onChange={handleInputChange} error={errors.DOB} />
-
                         <Input id="email" name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} error={errors.email} />
                         {errors.api && <p className="text-red-500 text-xs mt-1">{errors.api}</p>}
                         <Button type="button" onClick={handleGetOtp} isLoading={isLoading}>
