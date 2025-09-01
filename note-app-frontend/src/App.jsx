@@ -10,7 +10,7 @@ import Spinner from './components/core/Spinner';
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return <div className="flex justify-center items-center h-screen"><Spinner /></div>;
-  return user ? children : <Navigate to="/login" />;
+  return user ? children : <Navigate to="/signup" />;
 };
 
 const GuestRoute = ({ children }) => {
